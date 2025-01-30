@@ -5,6 +5,7 @@ import App from './App';
 import { Login } from './pages/Login';
 import { Settings } from './pages/Settings';
 import { Profile } from './pages/Profile';
+import { EmailView } from './pages/EmailView';
 import { AuthLayout } from './components/AuthLayout';
 import './index.css';
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/email/:id',
+        element: <EmailView />,
       },
     ],
   },

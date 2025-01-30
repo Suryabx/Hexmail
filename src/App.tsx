@@ -23,6 +23,7 @@ interface UserProfile {
 }
 
 function App() {
+  const navigate = useNavigate();
   const [selectedFolder, setSelectedFolder] = useState('inbox');
   const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth >= 768);
   const [showCompose, setShowCompose] = useState(false);
@@ -183,6 +184,11 @@ function App() {
     return actions;
   };
 
+  const handleMessageClick = async (message: Message) => {
+    await toggleRead(message.id, true);
+    navigate(`/email/${message.id}`);
+  };
+
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* Header */}
@@ -311,7 +317,7 @@ function App() {
               {messages.map((message) => (
                 <div
                   key={message.id}
-                  onClick={() => toggleRead(message.id, true)}
+                  onClick={() => handleMessageClick(message)}
                   className={`flex items-center p-4 hover:bg-gray-50 cursor-pointer ${
                     !message.read ? 'bg-indigo-50' : ''
                   }`}
